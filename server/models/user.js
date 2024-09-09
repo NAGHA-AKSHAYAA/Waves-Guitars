@@ -13,7 +13,6 @@ const userSchema = mongoose.Schema({
         trim:true,
         unique: 1
     },
-
     password:{
         type: String,
         required: true,
@@ -76,6 +75,9 @@ userSchema.methods.generateToken = function(cb){
     })
 }
 
+userSchema.statics.findByToken = function(token,cb) {
+
+}
 
 
 const User = mongoose.model('User',userSchema)
