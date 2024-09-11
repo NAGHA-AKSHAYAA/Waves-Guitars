@@ -15,27 +15,92 @@ app.use(cookieParser());
 
 //models
 const {User} = require('./models/user'); 
+const {Brand} = require('./models/brand')
+const {Wood} = require('./models/wood')
 
 //middlewares
 const {auth} = require('./middleware/auth')
+const {admin} = require('./middleware/admin')
+
+// WOODS //
+app.post('/api/product/wood', auth, admin, (req,res)=>{
+    const wood = new Wood(req.body);
+
+    wood.save().then((doc)=>{
+        res.status(200).json({
+            success:true,
+            wood:doc
+        })
+    }).catch((err)=>{
+        res.json({success:false, error: err})
+    })
+})
+
+app.get('/api/product/getWoods',auth,admin,(req,res)=>{
+    Wood.find().then((docs)=>{
+        res.status(200).json({sucess:true, woods:docs})
+    }).catch((err)=>{
+        res.json({success:false, error:err})
+    })
+})
+
+// BRANDS //
+app.post('/api/product/brand', auth, admin, (req,res)=>{
+    const brand = new Brand(req.body);
+
+    brand.save().then((doc)=>{
+        res.status(200).json({
+            success: true,
+            brand: doc
+        })
+    }).catch((error)=>{
+        res.json({success:false, error: error})
+    })
+
+})
+
+app.get('/api/product/getBrands', auth, admin, (req,res)=>{
+    Brand.find().then((brands)=>{
+        res.status(200).send(brands)
+    }).catch((err)=>{
+        res.status(400).send(err)
+    })
+
+})
+
 
 // Users //
 
 app.get('/api/users/auth', auth, (req,res)=>{
-    
+    res.status(200).json({
+        isAdmin : req.user.role === 0 ? false : true,
+        isAuth: true,
+        email: req.user.email,
+        name : req.user.name,
+        lastName : req.user.name,
+        role: req.user.role,
+        cart: req.user.cart,
+        history: req.user.history
+    })
 })
 app.post('/api/users/register',(req,res)=>{
     const user = new User(req.body);
 
     const err =  user.save().then((result)=>{
-        res.status(200).json({success:true,data:result});
+        res.status(200).json({
+            success:true,
+           // data:result
+        });
     }).catch((err)=>{
-        res.json({success:false,error:err});
+        res.json({
+            success:false,
+            error:err
+        });
     }) 
 })
 
 app.post('/api/users/login', async (req,res)=>{
-    //find email
+    // find email
     try{
         const user = await User.findOne({'email':req.body.email})
         if(!user) return res.json({loginSuccess:false,message:'Ath fail, email deosnt exist'});
@@ -54,6 +119,17 @@ app.post('/api/users/login', async (req,res)=>{
     catch{
         res.status(400).json({loginSuccess:false, message: 'Error in login'})
     }
+})
+
+app.get('/api/users/logout',auth,(req,res)=>{
+    User.findOneAndUpdate(
+        {_id:req.user._id},
+        { token: ''}
+    ).then(()=>{
+        res.status(200).send({success:true})
+    }).catch(()=>{
+        res.json({sucess:false, err})
+    })
 })
 
 const port = process.env.PORT || 3002;
