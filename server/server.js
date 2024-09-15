@@ -17,10 +17,70 @@ app.use(cookieParser());
 const {User} = require('./models/user'); 
 const {Brand} = require('./models/brand')
 const {Wood} = require('./models/wood')
+const {Product} = require('./models/product')
 
 //middlewares
 const {auth} = require('./middleware/auth')
 const {admin} = require('./middleware/admin')
+
+// PRODUCTS //
+
+//BY ARRIVAL
+// /articles?sortBy=createdtAt&order=desc&limit=4
+
+//BY SELL
+// /articles?sortBy=sold&order=desc&limit=4&skip=5
+app.get('/api/product/articles', (req,res)=>{
+    let order = req.query.order ? req.query.order : 'asc'
+    let sortBy = req.query.sortBy ? req.query.sortBy : "_id"
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100
+    
+    Product.find().
+    populate('brand').
+    populate('wood').
+    sort([[sortBy, order]]).
+    limit(limit).exec().then((docs)=>{
+        res.status(200).send(docs)
+    }).catch((err)=>{
+        res.status(400).send(err)
+    })
+})
+
+
+app.get('/api/product/articles_by_id',(req,res)=>{
+    let type = req.query.type;
+    let items = req.query.id;
+
+    if(type === "array") {
+        let ids = req.query.id.split(',');
+        items = [];
+        items = ids.map(item=>{
+            console.log(item)
+            return new mongoose.Types.ObjectId(item)
+        })
+    }
+
+    Product.find({'_id':{$in:items}}).
+    populate('brand').
+    populate('wood').
+    exec().
+    then((docs)=>{
+        return res.status(200).send(docs)
+    }).catch((err)=>{
+        return res.status(500).send(err)
+    })
+      
+   
+})
+app.post('/api/product/article',auth,admin,(req,res)=>{
+    const product = new Product(req.body);
+
+    product.save().then((docs)=>{
+        res.status(200).json({success:true, article:docs})
+    }).catch((err)=>{
+        res.json({sucess:true,error:err})
+    })
+})
 
 // WOODS //
 app.post('/api/product/wood', auth, admin, (req,res)=>{
