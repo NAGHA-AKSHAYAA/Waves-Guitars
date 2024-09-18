@@ -1,17 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-
+const xss = require('xss-clean')
+const mongoSantize = require('express-mongo-sanitize')
+const routes = require('./routes')
 const app = express();
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose = require('mongoose')
+require('dotenv').config()
+const {handleError, convertToApiError} = require('./middleware/apiError')
+const mongoUri = `mongodb+srv://admin:8939267762@cluster0.r4oazxw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+mongoose.connect(mongoUri);
 
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE)
+app.use(xss());
+app.use(mongoSantize());
+app.use(express.json());
+app.use('/api', routes)
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
-app.use(cookieParser());
+
+
 
 //models
 const {User} = require('./models/user'); 
@@ -192,7 +197,13 @@ app.get('/api/users/logout',auth,(req,res)=>{
     })
 })
 
-const port = process.env.PORT || 3002;
+app.use(convertToApiError)
+
+app.use((err,req,res,next)=>{
+    handleError(err,res)
+})
+
+const port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
     console.log(`Server running at ${port}`);
