@@ -19,8 +19,6 @@ const creatUser = async (email, password,next) =>{
     }
 }    
 
-
-
 const genAuthToken = (user)=>{
     const token = user.generateAuthToken()
     return token
