@@ -2,7 +2,8 @@ const { User } = require("../models/user");
 
 require('dotenv').config();
 
-const {Statergy: JwtStatergy, ExtractJwt} = require('passport-jwt')
+const {Strategy: JwtStrategy, ExtractJwt} = require('passport-jwt')
+const passport = require('passport');
 
 const jwtOptions = {
     secretOrKey: process.env.SECRET,
@@ -21,6 +22,7 @@ const jwtVerify = async(payload, done) => {
     }
 }
 
-const jwtStatergy = new JwtStatergy(jwtOptions,jwtVerify)
+const jwtStatergy = new JwtStrategy(jwtOptions,jwtVerify)
+passport.use('jwt', jwtStatergy);
 
 module.exports = {jwtStatergy}

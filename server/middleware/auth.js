@@ -1,23 +1,30 @@
+const passport = require('passport');
+const {ApiError} = require('./apiError')
+const httpStatus = require('http-status')
+
 const {User} = require('./../models/user');
 
-let auth = (req, res, next) => {    
-    let token = req.cookies.w_auth;
 
-    User.findByToken(token,(err,user)=>{
-        if(err) throw err;
-        console.log(user);
-   
-        if(!user) return res.json({
-            isAuth: false,
-            error: true
-        });
-
-        req.token = token;
-        req.user = user;
+const verify= (req,res,resolve,reject) => async(err,user)=>{
+    if(err || !user){
+        return reject (new ApiError(httpStatus.UNAUTHORIZED,'Sorry, unauthorized'))
+    }
+    console.log("inside verify");
     
-        next();
-    })
+    console.log(user);
+
+    req.user= user
+    resolve()
 }
 
 
-module.exports = {auth}
+const auth = () => async(req,res,next) => {
+    console.log("inside auth");
+    
+    return new Promise ((resolve, reject)=>{
+        passport.authenticate('jwt',{session:false}, verify(req,res,resolve,reject))(req, res, next);
+    }).then(()=>next()).
+    catch((err)=>next(err))
+}
+
+module.exports = auth;

@@ -1,3 +1,4 @@
+const { OK } = require('http-status');
 const {authService} = require('../services')
 
 const authController = {
@@ -28,7 +29,16 @@ const authController = {
     
     async isauth(req,res,next){
         try{
+            console.log("inside function");
+            res.json(req.user)
+        }catch(err){
 
+        }
+    },
+    async dog(req,res,next){
+        try{
+            console.log("inside function");
+            res.json({"hello":"yes"})
         }catch(err){
 
         }
