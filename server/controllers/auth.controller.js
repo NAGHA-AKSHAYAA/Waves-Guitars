@@ -1,5 +1,6 @@
 const { OK } = require('http-status');
-const {authService} = require('../services')
+const {authService, emailService} = require('../services');
+const httpStatus = require('http-status');
 
 const authController = {
     async register(req,res,next){
@@ -8,7 +9,8 @@ const authController = {
         const user = await authService.creatUser(email, password)
         const token = await authService.genAuthToken(user)
 
-        res.cookie('x-access-token',token).status(200).send({user,token})
+        await emailService.registerEmail(email,user);
+        res.cookie('x-access-token',token).status(httpStatus.CREATED).send({user,token})
     }
     catch(err) {
         console.log(err);
@@ -31,14 +33,6 @@ const authController = {
         try{
             console.log("inside function");
             res.json(req.user)
-        }catch(err){
-
-        }
-    },
-    async dog(req,res,next){
-        try{
-            console.log("inside function");
-            res.json({"hello":"yes"})
         }catch(err){
 
         }

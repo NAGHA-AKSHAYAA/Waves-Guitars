@@ -95,10 +95,15 @@ userSchema.methods.comparePassword = async function(canditatePassword,cb){
 
 userSchema.methods.generateAuthToken = function(){
     var user = this;
-    var token = jwt.sign({sub:user._id.toHexString()},process.env.SECRET,{expiresIn:"1d"})
+    var token = jwt.sign({sub:user._id.toHexString(), email: user.email},process.env.SECRET,{expiresIn:"1d"})
     return token
 }
 
+userSchema.methods.generateRegisterToken = function(){
+    let user = this;
+    var token = jwt.sign({sub:user._id.toHexString(), email: user.email},process.env.SECRET,{expiresIn:"1d"})
+    return token
+}
 userSchema.statics.findByToken = function(token,cb) {
     var user = this;
 

@@ -9,7 +9,6 @@ console.log("route");
 router.post('/register', authController.register)
 router.post('/signIn', authController.signin)
 router.get('/isauth',auth(), authController.isauth)
-router.get('/dog',authController.dog)
 
 
 
