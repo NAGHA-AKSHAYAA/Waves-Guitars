@@ -1,6 +1,6 @@
 const { default: mongoose, mongo } = require("mongoose");
-const {Brand} = require('./brand')
 const Schema = mongoose.Schema
+const aggregatePaginate = require('mongoose-aggregate-paginate-v2')
 
 const productSchema = mongoose.Schema({
     model: {
@@ -58,6 +58,7 @@ const productSchema = mongoose.Schema({
 
 },{timestamps:true})
 
+productSchema.plugin(aggregatePaginate)
 const Product = mongoose.model('Product', productSchema)
 
 module.exports = {Product}
