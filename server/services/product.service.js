@@ -92,7 +92,30 @@ const paginateProducts = async(req) =>{
         }
 
 
+        if(req.body.frets && req.body.frets.length>0) {
+            aggQueryArray.push({
+                $match:{frets:{$in:req.body.frets}}
+            })
+        }
 
+        if(req.body.min && req.body.min>0 || req.body.max && req.body.max<5000) {
+            if(req.body.min){
+                aggQueryArray.push({$match:{price:{$gt:req.body.min}}})
+            }
+            if(req.body.max){
+                aggQueryArray.push({$match:{price:{$lt:req.body.max}}})
+            }
+        }
+
+        aggQueryArray.push(
+            {$lookup:{
+                from:"brands",
+                localField:"brand",
+                foreignField:"_id",
+                as:"brand"
+            }},
+            {$unwind:'$brand'}
+        )
 
         let aggQuery = Product.aggregate(aggQueryArray)
         const options = {
