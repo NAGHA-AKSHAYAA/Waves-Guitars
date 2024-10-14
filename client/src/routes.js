@@ -10,9 +10,11 @@ import Home from 'components/home'
 function App() {
   return (
     <BrowserRouter>
+    <Header/>
     <Routes>
       <Route path="/" Component={Home}/>
     </Routes>
+    <Footer/>
     </BrowserRouter>
   );
 }

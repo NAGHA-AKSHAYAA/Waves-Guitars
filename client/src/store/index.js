@@ -4,11 +4,11 @@ import appReducers from './reducers';
 
 
 const ReduxStore = () =>{
-    const componseEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     
     const store = createStore(
         appReducers,
-        componseEnhancers(applyMiddleware(thunk))
+        composeEnhancers(applyMiddleware(thunk))
     )
     return store
 }
