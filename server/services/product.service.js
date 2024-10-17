@@ -54,7 +54,9 @@ const getAllProducts = async(req) => {
     try {
         const product = await Product
         .find({})
-        .populate('brand');
+        .populate('brand').sort([
+            [req.query.sortBy,req.query.order]
+        ]).limit(parseInt(req.query.limit));;
 
         return product
     } catch (error) {
