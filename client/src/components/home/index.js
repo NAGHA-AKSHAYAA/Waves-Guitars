@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import Featured from './featured'
 import SlimPromotion from 'utils/promotions'
+import Loader from 'utils/loader'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { productsBySort } from 'store/actions/products.actions'
+
+import CardBlock from 'utils/products/cardBlocks'
 
 const slimPromotions = {
     img:'/images/featured/featured_home_3.jpg',
@@ -30,7 +33,9 @@ const Home = () => {
     return (
         <div>
         <Featured/>
+        {bySold? <CardBlock  items={bySold} title="Best selling guitar"/>:<Loader/>}
         <SlimPromotion items={slimPromotions}/>
+        {byDate? <CardBlock  items={bySold} title="Lastet guitars in the market"/>:<Loader/>}
         </div>
     )
 }

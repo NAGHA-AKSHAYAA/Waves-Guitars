@@ -1,6 +1,6 @@
 import React from 'react'
 import {Routes, Route, BrowserRouter} from 'react-router-dom'
- 
+ import MainLayout from 'hoc/mainLayout';
 
 import Header from 'components/navigation/header'
 import Footer from 'components/navigation/footer';
@@ -11,9 +11,11 @@ function App() {
   return (
     <BrowserRouter>
     <Header/>
+    <MainLayout>
     <Routes>
       <Route path="/" Component={Home}/>
     </Routes>
+    </MainLayout>
     <Footer/>
     </BrowserRouter>
   );
