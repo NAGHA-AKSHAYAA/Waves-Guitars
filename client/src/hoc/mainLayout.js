@@ -20,7 +20,7 @@ const MainLayout = (props) => {
             showToast('SUCCESS', msg)
             dispatch(clearNotification())
         }
-    },[notifications])
+    },[notifications, dispatch])
     
 
     return (

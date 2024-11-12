@@ -1,9 +1,9 @@
 import React from "react";
-import CircularProgress from '@material-ui/core/CircularProgress'
+import {CircularProgress} from '@mui/material'
 
 
 const Loader = ({full}) => {
-    <div className={`root_loader ${full? 'full' :''}`}>
+    return <div className={`root_loader ${full? 'full' :''}`}>
         <CircularProgress/>
     </div>
 }

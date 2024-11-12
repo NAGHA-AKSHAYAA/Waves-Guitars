@@ -10,24 +10,27 @@ const findUserById = async (_id) => {
     return await User.findById(_id)
 }
 
-const updateUserProfile = async(req) => {
+const updateUserProfile =  async(req) =>{
     try{
-
-        const user = await User.findOneAndUpdate(
-            {_id: req.user._id},
+        
+        console.log(req);
+        
+        const user = await User.findOneAndUpdate({_id:req.user._id},
             {
                 "$set":{
-                    ...req.body
+                    ...req.body.data
                 }
-            },
-            {new:true}
-        )
+            },{new:true})
+
+        console.log(user);
+        
 
         if(!user){
-            throw apiError(httpStatus.NOT_FOUND,'User not found')
+            throw new apiError(httpStatus.NOT_FOUND,'User Not Found')
         }
         return user;
-    }catch(error){
+    }
+    catch(error){
         throw error
     }
 }
