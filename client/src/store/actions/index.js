@@ -8,7 +8,9 @@ import {
     CLEAR_NOTIFICATION,
     SIGN_OUT,
     UPDATE_USER_PROFILE,
-    USER_CHANGE_EMAIL
+    USER_CHANGE_EMAIL,
+    GET_PROD_PAGINATE,
+    REMOVE_PRODUCT
 } from '../types'
 
 export const productsBySold = (data) => ({    
@@ -19,6 +21,15 @@ export const productsBySold = (data) => ({
 export const productsByDate = (data) => ({    
     type: GET_PRODUCTS_BY_DATE,
     payload: data
+})
+
+export const productsByPaginate = (products)=>({
+    type: GET_PROD_PAGINATE,
+    payload: products
+})
+
+export const productRemove = () => ({
+    type: REMOVE_PRODUCT
 })
 
 ///NOTIFICATIONS

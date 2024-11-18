@@ -1,6 +1,7 @@
 export const GET_PRODUCTS_BY_SOLD = 'get_products_by_sold'
 export const GET_PRODUCTS_BY_DATE = 'get_products_by_date'
-
+export const GET_PROD_PAGINATE = 'get_prod_paginate'
+export const REMOVE_PRODUCT = 'remove_product'
 
 ///NOTIFICATIONs
 

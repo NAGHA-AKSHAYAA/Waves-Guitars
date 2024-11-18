@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardLayout from "hoc/dashboard.layout";
 import { userAuthenticate } from "store/actions";
+import AdminProduct from "./admin/products";
 
 const UserDashboard = ({users}) => {
 

@@ -867,6 +867,8 @@ footer .business_nfo .nfo {
     display:flex;
     margin-bottom: 50px;
     min-height: 700px;
+    padding-left: 8%;
+    padding-right: 10%;
 }
 
 .user_container .dashboard_title{

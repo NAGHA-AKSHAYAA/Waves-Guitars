@@ -14,7 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userIsAuth, userSignOut } from 'store/actions/users.actions';
 import authGuard from 'hoc/routeGuard';
 import UserInfo from 'components/dashboard/user/info';
-
+import AdminProduct from 'components/dashboard/admin/products';
+import AddProduct from 'components/dashboard/admin/products/addedit/add';
 
 function App(props) {
 
@@ -53,6 +54,8 @@ function App(props) {
         <Route path="/sign_in" Component={RegisterLogin}/>
         <Route path="/dashboard" Component={authGuard(UserDashboard)}/>
         <Route path="/dashboard/user/user_info" Component={authGuard(UserInfo)}/>
+        <Route path="/dashboard/admin/admin_products" Component={authGuard(AdminProduct)}/>
+        <Route path="/dashboard/admin/add_product" Component={authGuard(AddProduct)}/>
       </Routes>
       </MainLayout>
       <Footer/>
