@@ -7,8 +7,6 @@ export const formValues = {
     description:'',
     price:'',
     available:'',
-    price:'',
-    available:'',
     shipping:false,
 }
 
@@ -28,8 +26,8 @@ export const validation = () => (
         price:Yup.number()
                 .required("Price is required")
                 .min(1,"Min is 1")
-                .min(10000, "Sorrt its 500 max"),
+                .max(10000, "Sorrt its 1000 max"),
         available:Yup.number().required("available is required"),
-        shipping:Yup.boolean,
+        shipping:Yup.boolean(),
     })
 )

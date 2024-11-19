@@ -41,10 +41,10 @@ const deleteBrandById = async (id)=>{
 const getBrands = async(args) =>{
     try {
         const brands = await  Brand.find({})
-        .sort([
-            ["_id",args.order]
-        ])
-        .limit(args.limit);
+        // .sort([
+        //     ["_id",args.order]
+        // ])
+        // .limit(args.limit);
 
         if(!brands) throw new ApiError(httpStatus.NOT_FOUND, 'Brand not found')
         return brands
