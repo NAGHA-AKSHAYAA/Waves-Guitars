@@ -70,3 +70,25 @@ export const productAdd = (data) => {
         }
     }
 }
+
+export const productById = (id) => {
+    return async (dispatch) => {
+        try {
+            const product = await axios.get(`/api/product/product/${id}`)
+            dispatch(actions.productsById(product))
+        } catch (error) {
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}
+
+export const productEdit = (values, id) => {
+    return async (dispatch) => {
+        try {
+            const product = await axios.patch(`/api/product/product/${id}`, values, getAuthHeader())
+            dispatch(actions.successGlobal('Update Successful'))
+        } catch (error) {
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}

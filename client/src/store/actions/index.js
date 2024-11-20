@@ -14,7 +14,9 @@ import {
     GET_ALL_BRANDS,
     PRODUCT_ADD,
     CLEAR_PRODUCT_TYPE,
-    CLEAR_PRODUCT_ADD
+    CLEAR_PRODUCT_ADD,
+    GET_PRODUCT_BY_ID,
+    CLEAR_CURRENT_PRODUCT
 } from '../types'
 
 export const productsBySold = (data) => ({    
@@ -84,6 +86,10 @@ export const clearProductAdd = ()=> {
     }
 }
 
+export const clearCurrentProduct = () => ({
+    type: CLEAR_CURRENT_PRODUCT
+})
+
 //USER
  export const userAuthenticate =  (user) => ({
     type:AUTH_USER,
@@ -100,4 +106,7 @@ export const clearProductAdd = ()=> {
     payload:  data
  })
 
- 
+ export const productsById= (product) => ({
+    type: GET_PRODUCT_BY_ID,
+    payload: product
+ })

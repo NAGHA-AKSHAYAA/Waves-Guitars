@@ -3,7 +3,9 @@ import {
     GET_PRODUCTS_BY_DATE,
     GET_PROD_PAGINATE,
     PRODUCT_ADD,
-    CLEAR_PRODUCT_ADD
+    CLEAR_PRODUCT_ADD,
+    GET_PRODUCT_BY_ID,
+    CLEAR_CURRENT_PRODUCT
 } from '../types'
 
 
@@ -26,7 +28,12 @@ export default function productsReducer(state= {}, action){
 
         case CLEAR_PRODUCT_ADD:
             return {...state, removeArticle: true, lastAdded: null}
-            
+
+        case GET_PRODUCT_BY_ID:
+            return {...state, byId:action.payload }
+        
+        case CLEAR_CURRENT_PRODUCT:
+            return {...state, byId:null}
         default:
             return state   
     }

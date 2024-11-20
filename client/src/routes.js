@@ -16,6 +16,8 @@ import authGuard from 'hoc/routeGuard';
 import UserInfo from 'components/dashboard/user/info';
 import AdminProduct from 'components/dashboard/admin/products';
 import AddProduct from 'components/dashboard/admin/products/addedit/add';
+import EditProduct from 'components/dashboard/admin/products/addedit/edit';
+import Shop from 'components/shop';
 
 function App(props) {
 
@@ -52,10 +54,12 @@ function App(props) {
       <Routes>
         <Route path="/" Component={Home}/>
         <Route path="/sign_in" Component={RegisterLogin}/>
+        <Route path="/shop" Component={Shop}/>
         <Route path="/dashboard" Component={authGuard(UserDashboard)}/>
         <Route path="/dashboard/user/user_info" Component={authGuard(UserInfo)}/>
         <Route path="/dashboard/admin/admin_products" Component={authGuard(AdminProduct)}/>
         <Route path="/dashboard/admin/add_product" Component={authGuard(AddProduct)}/>
+        <Route path="/dashboard/admin/edit_product/:id" Component={authGuard(EditProduct)}/>
       </Routes>
       </MainLayout>
       <Footer/>

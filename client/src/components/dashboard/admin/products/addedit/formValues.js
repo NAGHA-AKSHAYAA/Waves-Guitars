@@ -31,3 +31,18 @@ export const validation = () => (
         shipping:Yup.boolean(),
     })
 )
+
+export const getValuesToEdit = (input) => {
+        let product = input.data
+        return {
+                model: product.model,
+                brand: product.brand._id,
+                frets: product.frets,
+                woodtype: product.woodtype,
+                description:product.description,
+                price:product.price,
+                available:product.available,
+                shipping:product.shipping,
+                images:product.images
+        }
+}

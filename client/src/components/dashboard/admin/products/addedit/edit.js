@@ -12,32 +12,26 @@ import { TextField,
 } from "@mui/material";
 import Loader from "utils/loader";
 import { useDispatch, useSelector } from "react-redux";
-import { validation } from "./formValues";
+import { validation, formValues, getValuesToEdit } from "./formValues";
 import { getAllBrands } from "store/actions/brands.action";
-import { productAdd } from "store/actions/products.actions";
-import {  useNavigate } from "react-router-dom";
-import { clearProductAdd } from "store/actions";
+import { productEdit, productById } from "store/actions/products.actions";
+import {  useNavigate, useParams } from "react-router-dom";
+import { clearCurrentProduct, clearProductAdd } from "store/actions";
 import PicUpload from "./upload";
 
-const AddProduct = (props) => {
-
+const EditProduct = (props) => {
+    const [values, setValues] = useState(formValues)
     const [loading, setLoading] = useState(false)
+    const products = useSelector(state=> state.products)
     const notifications = useSelector(state=> state.notifications)
     const dispatch = useDispatch()
     const brands = useSelector(state=>state.brands)
     const navigate = useNavigate();
+    const {id} = useParams()
 
     const formik = useFormik({
-        initialValues: {
-            model:'',
-            brand:'',
-            frets:'',
-            woodtype:'',
-            description:'',
-            price:'',
-            available:'',
-            shipping:false,
-        },
+        enableReinitialize: true,
+        initialValues:values,
         validationSchema: validation,
         onSubmit: (values)=>{
            handleSubmit(values)
@@ -46,29 +40,34 @@ const AddProduct = (props) => {
 
     const handleSubmit = (values) => {
         setLoading(true)
-        dispatch(productAdd(values))
+        dispatch(productEdit(values, id))
     }
 
     useEffect(()=>{
-        if(notifications && notifications.success){
-            navigate('/dashboard/admin/admin_products');
-        }
-
-        if(notifications && notifications.error){
+        if(notifications){
             setLoading(false)
         }
-
-    }, [notifications,navigate])
-
+    }, [notifications])
+    
     useEffect(()=>{
         dispatch(getAllBrands())
+        if(id){
+            console.log(id);
+            dispatch(productById(id))
+        }
+    },[dispatch,id])
+
+    useEffect(()=>{
+        return ()=>{
+            dispatch(clearCurrentProduct())
+        }
     },[dispatch])
 
     useEffect(()=>{
-        return() =>{  //executes when the component is unmounted
-            clearProductAdd()
+        if(products && products.byId){
+            setValues(getValuesToEdit(products.byId))
         }
-    })
+    },[products])
 
     return (
         <>
@@ -193,7 +192,7 @@ const AddProduct = (props) => {
                             <Button variant="contained"
                                     color="primary"
                                     type="submit">
-                                Add Product
+                                Edit Product
                             </Button>
                         </form>
                     </>
@@ -204,4 +203,4 @@ const AddProduct = (props) => {
 }
 
 
-export default AddProduct
+export default EditProduct

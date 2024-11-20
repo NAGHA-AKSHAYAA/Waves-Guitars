@@ -22,3 +22,5 @@ export const GET_ALL_BRANDS = "get_all_brands"
 //PRODUCT
 export const PRODUCT_ADD = "product_add"
 export const CLEAR_PRODUCT_ADD = "clear_product_add"
+export const GET_PRODUCT_BY_ID = "get_product_by_id"
+export const CLEAR_CURRENT_PRODUCT = "clear_current_product"
