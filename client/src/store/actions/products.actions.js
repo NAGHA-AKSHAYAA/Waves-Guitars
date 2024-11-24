@@ -39,6 +39,8 @@ export const productsBySort = ({sortBy,limit,order,where}) => {
 export const productsByPaginate = (args) => {
     return async (dispatch) => {
         try {
+            console.log(args);
+            
             const products = await axios.post(`/api/product/paginate/all`, args)
             dispatch(actions.productsByPaginate(products.data))
         } catch (error) {
