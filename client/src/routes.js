@@ -61,7 +61,7 @@ function App(props) {
         <Route path="/dashboard/admin/admin_products" Component={authGuard(AdminProduct)}/>
         <Route path="/dashboard/admin/add_product" Component={authGuard(AddProduct)}/>
         <Route path="/dashboard/admin/edit_product/:id" Component={authGuard(EditProduct)}/>
-        <Route path='/product_detail/:id' Component={ProductDetails}/>
+        <Route path="/product_detail/:id" Component={ProductDetails}/>
       </Routes>
       </MainLayout>
       <Footer/>

@@ -29,7 +29,17 @@ export const WavesButton = (props) => {
                 >
                     <AddShoppingCart style={{ fontsize: props.iconSize }} />
                 </div>
-
+            break;
+        case "add_to_cart_link":
+            template=
+                    <div className="add_to_cart_link"
+                        onClick={()=>{
+                            props.runAction()
+                        }}
+                    >
+                        <AddShoppingCart/>
+                        Add to cart
+                    </div>
             break;
         default:
             template = ''
