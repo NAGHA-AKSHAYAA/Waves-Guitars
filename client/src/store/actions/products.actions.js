@@ -25,9 +25,6 @@ export const productsBySort = ({sortBy,limit,order,where}) => {
             }
             dispatch(actions.productsBySold(products.data))
             dispatch(actions.productsByDate(products.data))
-            dispatch(actions.successGlobal("All good"))
-
-
         } catch (error) {
             console.log("something broke");
             

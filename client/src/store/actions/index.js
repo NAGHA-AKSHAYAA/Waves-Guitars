@@ -16,7 +16,8 @@ import {
     CLEAR_PRODUCT_TYPE,
     CLEAR_PRODUCT_ADD,
     GET_PRODUCT_BY_ID,
-    CLEAR_CURRENT_PRODUCT
+    CLEAR_CURRENT_PRODUCT,
+    USER_ADD_TO_CART
 } from '../types'
 
 export const productsBySold = (data) => ({    
@@ -109,4 +110,9 @@ export const clearCurrentProduct = () => ({
  export const productsById= (product) => ({
     type: GET_PRODUCT_BY_ID,
     payload: product
+ })
+
+ export const userAddToCart = (data) => ({
+    type: USER_ADD_TO_CART,
+    payload: data
  })

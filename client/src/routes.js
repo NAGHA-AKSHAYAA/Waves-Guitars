@@ -17,6 +17,7 @@ import UserInfo from 'components/dashboard/user/info';
 import AdminProduct from 'components/dashboard/admin/products';
 import AddProduct from 'components/dashboard/admin/products/addedit/add';
 import EditProduct from 'components/dashboard/admin/products/addedit/edit';
+import UserCart from 'components/dashboard/user/cart';
 import Shop from 'components/shop';
 import ProductDetails from 'components/product';
 
@@ -58,6 +59,7 @@ function App(props) {
         <Route path="/shop" Component={Shop}/>
         <Route path="/dashboard" Component={authGuard(UserDashboard)}/>
         <Route path="/dashboard/user/user_info" Component={authGuard(UserInfo)}/>
+        <Route path="/dashboard/user/user_cart" Component={authGuard(UserCart)}/>
         <Route path="/dashboard/admin/admin_products" Component={authGuard(AdminProduct)}/>
         <Route path="/dashboard/admin/add_product" Component={authGuard(AddProduct)}/>
         <Route path="/dashboard/admin/edit_product/:id" Component={authGuard(EditProduct)}/>

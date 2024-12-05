@@ -105,3 +105,30 @@ export const userChangeEmail = (data) => {
         }
     }
 }
+
+export const userAddToCart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const cart = getState().users.cart
+            dispatch(actions.userAddToCart([
+                ...cart, 
+                data
+            ]))
+            dispatch(actions.successGlobal(`${data.model} added to cart`))
+        } catch (error) {
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}
+
+export const removeFromCart = (position) => {
+    return async (dispatch, getState) => {
+        try {
+            const cart = getState().users.cart
+            cart.splice(position,1)
+            dispatch(actions.userAddToCart(cart))
+        } catch (error) {
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}

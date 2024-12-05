@@ -1,11 +1,36 @@
-import React from "react"
+import React, {useState} from "react"
 import { WavesButton } from "utils/tool"
-
+import AddToCartHandler from "utils/addToCardHandler"
 import { LocalShipping, DoneOutline, SentimentVeryDissatisfied } from "@mui/icons-material"
 import { useSelector, useDispatch } from "react-redux"
+import { userAddToCart } from "store/actions/users.actions"
 
 
 const ProdInfo = (props) =>{
+    const [modal, setModal]= useState(false)
+    const [errorType, setErrorType] = useState(null)
+    const user = useSelector( state=> state.users)
+    const dispatch = useDispatch()
+
+    const handleClose = () => setModal(false)
+
+    const handleAddToCart=(item) => {
+        console.log(user);
+        
+        if(!user.auth){
+            setModal(true);
+            setErrorType('auth')
+            return false
+        }
+
+        if(!user.data.verified){
+            setModal(true)
+            setErrorType('verify')
+            return false
+        }
+        
+        dispatch(userAddToCart(item))
+    }
 
     const showProdTags = (detail) => (
         <div className="product_tags">
@@ -31,7 +56,7 @@ const ProdInfo = (props) =>{
                 </div>
             :
             <div className="tag">
-                    <div><DoneOutline/></div>
+                    <div><SentimentVeryDissatisfied/></div>
                     <div className="tag_text">
                     <div> Sorry product not available at the moment</div>
                     </div>
@@ -46,7 +71,7 @@ const ProdInfo = (props) =>{
             <div className="cart">
                 <WavesButton
                     type="add_to_cart_link"
-                    runAction={()=>alert('added to cart')}
+                    runAction={()=>handleAddToCart(detail)}
                 />
             </div>
         </div>
