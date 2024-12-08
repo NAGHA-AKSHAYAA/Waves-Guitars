@@ -2,6 +2,7 @@ import React from "react";
 import DashboardLayout from "hoc/dashboard.layout";
 import { userAuthenticate } from "store/actions";
 import AdminProduct from "./admin/products";
+import HistoryBlock from "utils/historyBlock";
 
 const UserDashboard = ({users}) => {
 
@@ -20,7 +21,7 @@ const UserDashboard = ({users}) => {
                     <div className="user_nfo_panel">
                         <h1>History of purchases</h1>
                         <div className="user_product_block_wrapper">
-                            history
+                            <HistoryBlock history={users.data.history}/>
                         </div>
                     </div>
 

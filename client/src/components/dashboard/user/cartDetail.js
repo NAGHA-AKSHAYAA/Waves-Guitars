@@ -18,9 +18,9 @@ const CardDetail = ({products, removeItem}) => {
                         </div>
                     </div>
                     <div className="item">
-                        <h4>Product name</h4>
+                        <h4>{product.brand.name}</h4>
                         <div>
-                            {product.brand.name} {product.model}
+                             {product.model}
                         </div>
                     </div>
                     <div className="item">

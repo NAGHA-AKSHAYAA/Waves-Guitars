@@ -12,7 +12,8 @@ let grantsObject = {
        profile:allRights,
        brand:allRights,
        product:allRights,
-       site:allRights
+       site:allRights,
+       transaction:allRights
     },
     user:{
         profile:{
@@ -21,7 +22,8 @@ let grantsObject = {
         },
         brand:{'read:any':['*']},
         product:{'read:any':['*']},
-        site:{'read:any':['*']}
+        site:{'read:any':['*']},
+        transaction:{ 'create:any':['*'],'read:any':['*']}
     }
 }
 

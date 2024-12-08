@@ -1,6 +1,7 @@
 import axios from "axios";
+import cookie from 'react-cookies'
 import * as actions from './index'
-import { getAuthHeader, removeTokenCookie, gettokenCookie } from "utils/tool";
+import { getAuthHeader, removeTokenCookie, gettokenCookie, setCartInCookies } from "utils/tool";
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 export const userRegister = (values) => {
@@ -97,7 +98,13 @@ export const userUpdateProfile = (data) => {
 export const userChangeEmail = (data) => {
     return async(dispatch) => {
         try {
-            await axios.patch(`api/user/email`,{email:data.email, newemail: data.newemail},getAuthHeader())
+            await axios.patch(`api/user/email`,
+                {
+                    email:data.email, 
+                    newemail: data.newemail
+                },
+                getAuthHeader()
+            )
             dispatch(actions.userUpdateProfile(data.newemail))
             dispatch(actions.successGlobal("Good Job"))
         } catch (error) {
@@ -114,6 +121,8 @@ export const userAddToCart = (data) => {
                 ...cart, 
                 data
             ]))
+            const updatedCart = [...cart, data];
+            setCartInCookies(updatedCart);
             dispatch(actions.successGlobal(`${data.model} added to cart`))
         } catch (error) {
             dispatch(actions.errorGlobal(error.response.data.message))
@@ -126,7 +135,23 @@ export const removeFromCart = (position) => {
         try {
             const cart = getState().users.cart
             cart.splice(position,1)
+            setCartInCookies(cart);
             dispatch(actions.userAddToCart(cart))
+        } catch (error) {
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}
+
+export const userPurchaseSuccess = (orderId) => {
+    return async (dispatch) => {
+        try {
+           const user = await axios.post(`/api/transaction/`,{
+            orderId
+           }, getAuthHeader())
+
+           dispatch(actions.successGlobal('Thank You !!'))
+           dispatch(actions.userPurchaseSuccess(user.data))
         } catch (error) {
             dispatch(actions.errorGlobal(error.response.data.message))
         }

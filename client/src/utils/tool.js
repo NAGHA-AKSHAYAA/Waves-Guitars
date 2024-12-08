@@ -21,7 +21,7 @@ export const WavesButton = (props) => {
         case "bag_link":
             template =
                 <div
-                    className="bsg_link"
+                    className="bag_link"
                     onClick={() => {
                         props.runAction()
                     }}
@@ -88,3 +88,12 @@ export const getAuthHeader = () => {
       headers: { Authorization: `Bearer ${gettokenCookie()}` },
     };
   };
+
+export const getCartFromCookies = () => {
+    const cart = cookie.load('cart');
+    return cart ? cart : [];
+};
+
+export const setCartInCookies = (cart) => {
+    cookie.save('cart', cart, { path: '/', maxAge: 7 * 24 * 60 * 60 }); // Expires in 7 days
+};

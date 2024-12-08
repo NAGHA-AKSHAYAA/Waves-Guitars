@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useCookies } from 'react-cookie';
 import {renderCardImage, WavesButton} from '../tool'
 import { useDispatch, useSelector } from "react-redux";
 import AddToCartHandler from "utils/addToCardHandler";

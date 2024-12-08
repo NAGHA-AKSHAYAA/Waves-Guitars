@@ -27,7 +27,6 @@ const verify= (req,res,resolve,reject,rights) => async(err,user)=>{
 
 
 const auth = (...rights) => async(req,res,next) => {
-    
     return new Promise ((resolve, reject)=>{
         passport.authenticate('jwt',{session:false}, verify(req,res,resolve,reject, rights))(req, res, next);
     }).then(()=>next()).

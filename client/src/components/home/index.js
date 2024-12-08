@@ -27,8 +27,6 @@ const Home = () => {
         dispatch(productsBySort({sortBy:'date',limit:4,order:'desc', where:'byDate'}))
 
     },[dispatch])
-
-    console.log("sold and date", bySold, byDate);
     
     return (
         <div>
