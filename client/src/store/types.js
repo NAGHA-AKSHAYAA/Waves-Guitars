@@ -26,3 +26,8 @@ export const PRODUCT_ADD = "product_add"
 export const CLEAR_PRODUCT_ADD = "clear_product_add"
 export const GET_PRODUCT_BY_ID = "get_product_by_id"
 export const CLEAR_CURRENT_PRODUCT = "clear_current_product"
+
+
+//site
+export const GET_SITE_VARS = 'get_site_vars'
+export const UPDATE_SITE_VARS = "update_site_vars"

@@ -18,6 +18,7 @@ import { productAdd } from "store/actions/products.actions";
 import {  useNavigate } from "react-router-dom";
 import { clearProductAdd } from "store/actions";
 import PicUpload from "./upload";
+import PicViewer from "./picViewer";
 
 const AddProduct = (props) => {
 
@@ -37,6 +38,7 @@ const AddProduct = (props) => {
             price:'',
             available:'',
             shipping:false,
+            images:[]
         },
         validationSchema: validation,
         onSubmit: (values)=>{
@@ -47,6 +49,18 @@ const AddProduct = (props) => {
     const handleSubmit = (values) => {
         setLoading(true)
         dispatch(productAdd(values))
+    }
+
+    const handlePicValue = (pic) => {
+        const picArray = formik.values.images;
+        picArray.push(pic.url)
+        formik.setFieldValue('images', picArray)
+    }
+
+    const deletePic = (index) => {
+        const picArray = formik.values.images;
+        picArray.splice(index,1)
+        formik.setFieldValue('images', picArray)
     }
 
     useEffect(()=>{
@@ -78,7 +92,12 @@ const AddProduct = (props) => {
                     <Loader/>
                     :
                     <>
-                        <PicUpload/>
+                        <PicViewer
+                            formik={formik}
+                            deletePic={(index)=>deletePic(index)}
+                        /> 
+                        <PicUpload
+                        picValue={(pic)=>handlePicValue(pic)}/>
                         <Divider className="mt-3  mb-3"/>
                         <form className="mt-3 article_form" onSubmit={formik.handleSubmit}>
                             <div className="form-group">

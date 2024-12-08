@@ -143,6 +143,8 @@ const paginateProducts = async(req) =>{
 
 const picUpload = async(req)=>{
     try{
+        console.log(req.files.file.path);
+        
         const upload = await cloudinary.uploader.upload(req.files.file.path,{
             public_id: `${Date.now()}`,
             folder: 'waves_upload'

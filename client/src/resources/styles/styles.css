@@ -560,8 +560,9 @@ footer .business_nfo .nfo {
 .card_item_wrapper .tags .brand,
 .card_item_wrapper .tags .name,
 .card_item_wrapper .tags .price {
+    display: block; /* Ensures each element is on a new line */
     text-align: center;
-    margin: 5px;
+    margin: 10px 0; /* Adjusted to vertical spacing only */
 }
 
 .card_item_wrapper .tags .brand {
@@ -580,6 +581,11 @@ footer .business_nfo .nfo {
     font-size: 21px;
 }
 
+.description p {
+    margin-top: 10px; /* Adjust if needed */
+}
+
+
 .card_item_wrapper .actions {
     display: flex;
     padding: 15px 0 10px 0;
@@ -597,7 +603,7 @@ footer .business_nfo .nfo {
 }
 
 .card_item_wrapper.grid_bars .image {
-    width: 420px;
+    width: 450px;
     height: 211px;
     border: none;
 
@@ -695,7 +701,7 @@ footer .business_nfo .nfo {
 
 .product_detail_wrapper .right{
     flex-grow: 1; 
-    min-height: 800px;
+    min-height: 350px;
 }
 
 .product_detail_wrapper .left div{
@@ -934,6 +940,7 @@ footer .business_nfo .nfo {
 
 .user_product_block .item .image{
     height: 125px;
+    width: 50px;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;

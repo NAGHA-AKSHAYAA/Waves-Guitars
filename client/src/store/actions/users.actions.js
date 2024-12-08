@@ -46,6 +46,9 @@ export const userSignIn = (values) => {
 export const userIsAuth = () => {
     return async(dispatch) => {
         try {
+
+            const site = await axios.get(`/api/site`)
+            dispatch(actions.siteGetVars(site))
             if (!gettokenCookie()) {
                 throw new Error();
               }

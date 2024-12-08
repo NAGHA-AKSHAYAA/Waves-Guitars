@@ -19,6 +19,7 @@ import AddProduct from 'components/dashboard/admin/products/addedit/add';
 import EditProduct from 'components/dashboard/admin/products/addedit/edit';
 import UserCart from 'components/dashboard/user/cart';
 import Shop from 'components/shop';
+import ManageSite from 'components/dashboard/admin/site';
 import ProductDetails from 'components/product';
 
 function App(props) {
@@ -62,6 +63,7 @@ function App(props) {
         <Route path="/dashboard/user/user_cart" Component={authGuard(UserCart)}/>
         <Route path="/dashboard/admin/admin_products" Component={authGuard(AdminProduct)}/>
         <Route path="/dashboard/admin/add_product" Component={authGuard(AddProduct)}/>
+        <Route path="/dashboard/admin/manage_site" Component={authGuard(ManageSite)}/>
         <Route path="/dashboard/admin/edit_product/:id" Component={authGuard(EditProduct)}/>
         <Route path="/product_detail/:id" Component={ProductDetails}/>
       </Routes>

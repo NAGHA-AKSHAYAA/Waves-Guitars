@@ -6,7 +6,7 @@ import axios from 'axios'
 import { gettokenCookie } from "utils/tool";
 import Loader from "utils/loader";
 
-const PicUpload = () => {
+const PicUpload = ({picValue}) => {
     const [loading, setLoading]= useState(false)
     const formikImg = useFormik({
         initialValues: {pic:''},
@@ -24,7 +24,7 @@ const PicUpload = () => {
                 'Authorization': `Bearer ${gettokenCookie()}`
             }
             }).then(response=>{
-                console.log(response.data);
+                picValue(response.data)               
             }).catch(error => {
                 alert(error)
             }).finally(()=>{

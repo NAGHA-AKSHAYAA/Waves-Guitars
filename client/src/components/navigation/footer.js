@@ -3,14 +3,18 @@ import ContactIcon from '@mui/icons-material/Contacts'
 import TimelapseIcon from '@mui/icons-material/Timelapse'
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
+import { useSelector } from 'react-redux'
 
 const Footer = () => {
+
+    const site = useSelector(state => state.site)
     return (
         <footer className='bck_b_dark'>
             <div className='container'>
                 <div className='logo'>
                     WAVES
                 </div>
+                { site && site.vars ?
                 <div className='wrapper'>
                     <div className='left'>
                         <h2>Contact Information</h2>
@@ -19,28 +23,28 @@ const Footer = () => {
                                 <ContactIcon/>
                                 <div className='nfo'>
                                     <div>Address</div>
-                                    <div>Some street 22</div>
+                                    <div>{site.vars.data.address}</div>
                                 </div>
                             </div>
                             <div className='tag'>
                                 <PhoneIcon/>
                                 <div className='nfo'>
                                     <div>Phone</div>
-                                    <div>8939267762</div>
+                                    <div>{site.vars.data.phone}</div>
                                 </div>
                             </div> 
                             <div className='tag'>
                                 <TimelapseIcon/>
                                 <div className='nfo'>
-                                    <div>Phone</div>
-                                    <div>8939267762</div>
+                                    <div>Hours</div>
+                                    <div>{site.vars.data.hours}</div>
                                 </div>
                             </div>
                             <div className='tag'>
                                 <EmailIcon/>
                                 <div className='nfo'>
                                     <div>Email</div>
-                                    <div>aksh@naghs.com</div>
+                                    <div>{site.vars.data.email}</div>
                                 </div>
                             </div>
                         </div>
@@ -54,6 +58,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
+            : null}   
             </div>
         </footer>
     )

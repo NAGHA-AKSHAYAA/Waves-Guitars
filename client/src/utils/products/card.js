@@ -40,21 +40,17 @@ const Card = (props) => {
             }}>
             </div>
             <div className="action_container">
-                <div className="tags">
-                    <div className="brand">{props.item.brand.name}</div>
-                    <div className="name">{props.item.model}</div>
-                    <div className="name">{props.item.price}</div>
-                </div>
+            <div className="tags">
+                <div className="brand">{props.item.brand.name}</div>
+                <div className="name">{props.item.model}</div>
+                <div className="price">{props.item.price}</div>
+            </div>
 
-                {
-                    props.grid?
-                    <div className="decription">
-                        <p>
-                            {props.item.description}
-                        </p>
+                {props.grid ? (
+                    <div className="description">
+                        <p>{props.item.description}</p>
                     </div>
-                    : null
-                }
+                ) : null}
 
                 <div className="actions">
                     <div className="button_wrapp">

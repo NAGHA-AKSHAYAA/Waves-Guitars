@@ -33,7 +33,7 @@ const Home = () => {
         <Featured/>
         {bySold? <CardBlock  items={bySold} title="Best selling guitar"/>:<Loader/>}
         <SlimPromotion items={slimPromotions}/>
-        {byDate? <CardBlock  items={bySold} title="Lastet guitars in the market"/>:<Loader/>}
+        {byDate? <CardBlock  items={byDate} title="Lastet guitars in the market"/>:<Loader/>}
         </div>
     )
 }

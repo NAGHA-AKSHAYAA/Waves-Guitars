@@ -31,7 +31,7 @@ const ProductDetails = () => {
     }
 
     const handleCarrousel = () => {
-        if(products.byId.images.length > 0){
+        if(products.byId.data.images.length > 0){
             setModal(true)
         }
     }
@@ -48,10 +48,6 @@ const ProductDetails = () => {
 
     return (
         <div className="page_container">
-            <div className="page_top">
-                <div className="container">
-                    
-                </div>
                 <div className="container">
                     {products && products.byId ?
                      <div className="product_detail_wrapper">
@@ -80,8 +76,8 @@ const ProductDetails = () => {
                     <Modal.Body>
                         <Slider {...sliderSettings}>
                             {
-                                products.byId && products.byId.images ?
-                                products.byId.images.map((item)=>(
+                                products.byId && products.byId.data.images ?
+                                products.byId.data.images.map((item)=>(
                                     <div key={item} style={{margin:'0 auto'}}>
                                         <div className="img-block"
                                             style={{
@@ -97,7 +93,6 @@ const ProductDetails = () => {
                     </Modal.Body>
                 </Modal>
             </div>
-        </div>
     )
 }
 

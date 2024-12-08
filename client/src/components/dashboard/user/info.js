@@ -51,6 +51,8 @@ const UserInfo = ({users}) => {
                         {...formik.getFieldProps('firstname')}
                         {...errorHelper(formik, 'firstname')}
                     />
+                </div>
+                <div className="form-group">
                     <TextField 
                         style={{width:'100%'}}
                         name='lastname'

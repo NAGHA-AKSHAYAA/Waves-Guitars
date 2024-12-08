@@ -18,7 +18,9 @@ import {
     GET_PRODUCT_BY_ID,
     CLEAR_CURRENT_PRODUCT,
     USER_ADD_TO_CART,
-    PURCHASE_SUCCESS
+    PURCHASE_SUCCESS,
+    GET_SITE_VARS,
+    UPDATE_SITE_VARS
 } from '../types'
 
 export const productsBySold = (data) => ({    
@@ -121,4 +123,17 @@ export const clearCurrentProduct = () => ({
  export const userPurchaseSuccess = (data) => ({
     type: PURCHASE_SUCCESS,
     payload: data
+ })
+
+
+ //SITE
+
+ export const siteGetVars = (vars)=> ({
+    type: GET_SITE_VARS,
+    payload: vars
+ })
+
+ export const updateSiteVars = (vars)=> ({
+    type: UPDATE_SITE_VARS,
+    payload: vars
  })
