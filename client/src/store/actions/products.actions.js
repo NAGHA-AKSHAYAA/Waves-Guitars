@@ -4,7 +4,7 @@ import { getAuthHeader } from "utils/tool";
 export const productsBySort = ({sortBy,limit,order,where}) => {
     return async(dispatch)=>{
         try {
-            const products = await axios.get('/api/product/all', {
+            const products = await axios.get('https://waves-theta.vercel.app/api/product/all', {
                 params: {
                     limit,
                     sortBy,
@@ -38,7 +38,7 @@ export const productsByPaginate = (args) => {
         try {
             console.log(args);
             
-            const products = await axios.post(`/api/product/paginate/all`, args)
+            const products = await axios.post(`https://waves-theta.vercel.app/api/product/paginate/all`, args)
             dispatch(actions.productsByPaginate(products.data))
         } catch (error) {
             dispatch(actions.errorGlobal(error.response.data.message))
@@ -49,7 +49,7 @@ export const productsByPaginate = (args) => {
 export const productsRemove = (id) => {
     return async (dispatch) => {
         try {
-            await axios.delete(`/api/product/product/${id}`, getAuthHeader())
+            await axios.delete(`https://waves-theta.vercel.app/api/product/product/${id}`, getAuthHeader())
             dispatch(actions.productRemove)
             dispatch(actions.successGlobal())
         } catch (error) {
@@ -61,7 +61,7 @@ export const productsRemove = (id) => {
 export const productAdd = (data) => {
     return async (dispatch) => {
         try {
-            const product = await axios.post(`/api/product/`, data, getAuthHeader())
+            const product = await axios.post(`https://waves-theta.vercel.app/api/product/`, data, getAuthHeader())
             dispatch(actions.productAdd(product))
             dispatch(actions.successGlobal())
         } catch (error) {
@@ -73,7 +73,7 @@ export const productAdd = (data) => {
 export const productById = (id) => {
     return async (dispatch) => {
         try {
-            const product = await axios.get(`/api/product/product/${id}`)
+            const product = await axios.get(`https://waves-theta.vercel.app/api/product/product/${id}`)
             dispatch(actions.productsById(product))
         } catch (error) {
             dispatch(actions.errorGlobal(error.response.data.message))
@@ -84,7 +84,7 @@ export const productById = (id) => {
 export const productEdit = (values, id) => {
     return async (dispatch) => {
         try {
-            const product = await axios.patch(`/api/product/product/${id}`, values, getAuthHeader())
+            const product = await axios.patch(`https://waves-theta.vercel.app/api/product/product/${id}`, values, getAuthHeader())
             dispatch(actions.successGlobal('Update Successful'))
         } catch (error) {
             dispatch(actions.errorGlobal(error.response.data.message))

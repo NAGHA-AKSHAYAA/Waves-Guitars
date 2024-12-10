@@ -7,7 +7,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 export const userRegister = (values) => {
     return async(dispatch) => {
         try {
-            const user = await axios.post(`/api/auth/register`,{
+            const user = await axios.post(`https://waves-theta.vercel.app/api/auth/register`,{
                 email : values.email,
                 password : values.password
             });
@@ -27,7 +27,7 @@ export const userRegister = (values) => {
 export const userSignIn = (values) => {
     return async(dispatch) => {
         try {
-            const user = await axios.post(`/api/auth/signin`,{
+            const user = await axios.post(`https://waves-theta.vercel.app/api/auth/signin`,{
                 email : values.email,
                 password : values.password
             });
@@ -47,12 +47,12 @@ export const userIsAuth = () => {
     return async(dispatch) => {
         try {
 
-            const site = await axios.get(`/api/site`)
+            const site = await axios.get(`https://waves-theta.vercel.app/api/site`)
             dispatch(actions.siteGetVars(site))
             if (!gettokenCookie()) {
                 throw new Error();
               }
-              const user = await axios.get("/api/auth/isauth", getAuthHeader());
+              const user = await axios.get("https://waves-theta.vercel.app/api/auth/isauth", getAuthHeader());
             dispatch(actions.userAuthenticate({data: user.data, auth:true}))
         } catch (error) {
             dispatch(actions.userAuthenticate({data:{}, auth:false}))
@@ -72,7 +72,7 @@ export const userUpdateProfile = (data) => {
     return async (dispatch, getState) => {
         try {
             
-            const profile = await axios.patch(`/api/user/profile`,{
+            const profile = await axios.patch(`https://waves-theta.vercel.app/api/user/profile`,{
                 data: data
             }, getAuthHeader());
 
@@ -101,7 +101,7 @@ export const userUpdateProfile = (data) => {
 export const userChangeEmail = (data) => {
     return async(dispatch) => {
         try {
-            await axios.patch(`api/user/email`,
+            await axios.patch(`https://waves-theta.vercel.app/api/user/email`,
                 {
                     email:data.email, 
                     newemail: data.newemail
@@ -149,7 +149,7 @@ export const removeFromCart = (position) => {
 export const userPurchaseSuccess = (orderId) => {
     return async (dispatch) => {
         try {
-           const user = await axios.post(`/api/transaction/`,{
+           const user = await axios.post(`https://waves-theta.vercel.app/api/transaction/`,{
             orderId
            }, getAuthHeader())
 

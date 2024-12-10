@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const xss = require('xss-clean')
 const mongoSantize = require('express-mongo-sanitize')
 const routes = require('./routes')
+const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const app = express();
 const mongoose = require('mongoose')
@@ -13,7 +14,8 @@ const {handleError, convertToApiError} = require('./middleware/apiError')
 const mongoUri = `mongodb+srv://admin:admin@cluster0.r4oazxw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 mongoose.connect(mongoUri);
 
-
+app.use(cors());
+  
 //santize
 app.use(xss());
 app.use(mongoSantize());
@@ -35,6 +37,8 @@ app.use(convertToApiError)
 app.use((err,req,res,next)=>{
     handleError(err,res)
 })
+
+app.get("/", (req, res) => res.send("Express on Vercel"))
 
 const port = process.env.PORT || 3002;
 
