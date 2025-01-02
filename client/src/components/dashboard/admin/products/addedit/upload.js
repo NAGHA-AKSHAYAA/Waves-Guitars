@@ -18,7 +18,7 @@ const PicUpload = ({picValue}) => {
             let formData = new FormData()
             formData.append("file", values.pic)
 
-            axios.post(`/api/product/upload`, formData,{ 
+            axios.post(`https://waves-theta.vercel.app/api/site`, formData,{ 
                 headers: {
                 'content-type': "multipart/form-data",
                 'Authorization': `Bearer ${gettokenCookie()}`
