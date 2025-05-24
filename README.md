@@ -52,8 +52,10 @@ The platform supports user registration, cart functionality, and secure checkout
 > Add screenshots here with a markdown image tag (if available):
 
 ```md
-![Home Page](screenshots/home.png)
-![Admin Panel](screenshots/admin-panel.png)
+![Home Page](waves1.png)
+![Home Page](waves2.png)
+![Admin Panel](waves3.png)
+![Cart Page](waves4.png)
 ```
 
 ---
