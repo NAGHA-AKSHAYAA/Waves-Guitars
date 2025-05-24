@@ -7,9 +7,7 @@ The platform supports user registration, cart functionality, and secure checkout
 ## 🔗 Live Demo
 
 🚀 [Live Demo](https://waves-webapp-tau.vercel.app/)
-
 ---
-
 ## 🛠️ Tech Stack
 
 **Frontend:**
@@ -27,9 +25,7 @@ The platform supports user registration, cart functionality, and secure checkout
 - Cloudinary (Image Uploads)
 - Stripe (Payment Gateway)
 - Bcrypt (Password Hashing)
-
 ---
-
 ## ✨ Features
 
 ### 👤 User Side
@@ -44,20 +40,20 @@ The platform supports user registration, cart functionality, and secure checkout
 - Add new brands and wood types
 - View orders and user info
 - Upload product images to Cloudinary
-
 ---
-
 ## 📸 Screenshots
 
-> Add screenshots here with a markdown image tag (if available):
-
-```md
+### Landing Page
 ![Home Page](waves1.png)
-![Home Page](waves2.png)
-![Admin Panel](waves3.png)
-![Cart Page](waves4.png)
-```
 
+### Home Page
+![Home Page](waves2.png)
+
+### Admin Page
+![Admin Panel](waves3.png)
+
+### Cart Page
+![Cart Page](waves4.png)
 ---
 ## 📁 Project Structure
 
