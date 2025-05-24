@@ -4,9 +4,7 @@ You can browse through different categories, such as wood type, make, and brand,
 With our easy-to-use interface, you can add items to your cart and purchase them with just a few clicks.
 The platform supports user registration, cart functionality, and secure checkout.
 
-## 🔗 Live Demo
-
-🚀 [Live Demo](https://waves-webapp-tau.vercel.app/)
+[Live Demo](https://waves-webapp-tau.vercel.app/)
 ---
 ## 🛠️ Tech Stack
 
@@ -41,8 +39,6 @@ The platform supports user registration, cart functionality, and secure checkout
 - View orders and user info
 - Upload product images to Cloudinary
 ---
-## 📸 Screenshots
-
 ### Landing Page
 ![Home Page](waves1.png)
 
@@ -56,7 +52,6 @@ The platform supports user registration, cart functionality, and secure checkout
 ![Cart Page](waves4.png)
 ---
 ## 📁 Project Structure
-
 ```bash
 waves-guitars/
 ├── client/          # React frontend
@@ -72,11 +67,8 @@ waves-guitars/
 ```
 ---
 ## 🚀 Getting Started
-
 Follow these steps to set up and run the project locally on your machine.
-
 ---
-
 ### 📦 Prerequisites
 
 Ensure you have the following installed:
