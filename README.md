@@ -21,7 +21,7 @@ The platform supports user registration, cart functionality, and secure checkout
 
 **Other Tools:**
 - Cloudinary (Image Uploads)
-- Stripe (Payment Gateway)
+- Paytm (Payment Gateway)
 - Bcrypt (Password Hashing)
 ---
 ## ✨ Features
