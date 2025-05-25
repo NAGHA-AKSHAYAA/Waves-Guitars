@@ -21,7 +21,7 @@ The platform supports user registration, cart functionality, and secure checkout
 
 **Other Tools:**
 - Cloudinary (Image Uploads)
-- Paytm (Payment Gateway)
+- PayPal (Payment Gateway)
 - Bcrypt (Password Hashing)
 ---
 ## ✨ Features
@@ -31,7 +31,7 @@ The platform supports user registration, cart functionality, and secure checkout
 - Browse & search for guitars
 - Filter by brand, wood type, and price
 - Add/remove items from cart
-- Secure payment using Stripe
+- Secure payment using PayPal
 
 ### 🔧 Admin Panel
 - Manage guitar inventory (Add/Edit/Delete products)
